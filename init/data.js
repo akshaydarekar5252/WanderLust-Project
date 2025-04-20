@@ -345,6 +345,55 @@ const sampleListings = [
     location: "Costa Rica",
     country: "Costa Rica",
   },
+  {
+    title: "Traditional Ryokan in Kyoto",
+    description: "Experience authentic Japanese hospitality in a serene ryokan near Kyoto’s ancient temples.",
+    image: "https://images.unsplash.com/photo-1584467735871-bd5f78b1428e?auto=format&fit=crop&w=800&q=60",
+    price: 2200,
+    location: "Kyoto",
+    country: "Japan"
+  },
+  {
+    title: "Tokyo City Apartment with Skyline View",
+    description: "Stay in the heart of Tokyo with stunning views of the skyline and close to Shibuya crossing.",
+    image: "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=800&q=60",
+    price: 2600,
+    location: "Tokyo",
+    country: "Japan"
+  },
+  {
+    title: "Mount Fuji View Cabin",
+    description: "Wake up to Mount Fuji right outside your window in this peaceful lakeside cabin.",
+    image: "https://images.unsplash.com/photo-1559115343-6d4d0d4a5e8e?auto=format&fit=crop&w=800&q=60",
+    price: 1900,
+    location: "Yamanashi",
+    country: "Japan"
+  },
+  {
+    title: "Snow Chalet in Hokkaido",
+    description: "Cozy up in a snowy retreat in Hokkaido, perfect for ski lovers and winter adventurers.",
+    image: "https://images.unsplash.com/photo-1603436320502-437eebc1e495?auto=format&fit=crop&w=800&q=60",
+    price: 2100,
+    location: "Niseko",
+    country: "Japan"
+  },
+  {
+    title: "Island Villa in Okinawa",
+    description: "Relax in a tropical villa by the turquoise beaches of Okinawa. Ideal for island getaways.",
+    image: "https://images.unsplash.com/photo-1584502450400-03f1a996e311?auto=format&fit=crop&w=800&q=60",
+    price: 2300,
+    location: "Okinawa",
+    country: "Japan"
+  },
+  {
+    title: "Zen Retreat in Nara",
+    description: "Rejuvenate in a peaceful zen-style retreat surrounded by deer parks and ancient shrines.",
+    image: "https://images.unsplash.com/photo-1571316981011-e002a5dc2c4d?auto=format&fit=crop&w=800&q=60",
+    price: 2000,
+    location: "Nara",
+    country: "Japan"
+  }
+  
 ];
 
 module.exports = { data: sampleListings };
