@@ -4,6 +4,11 @@ const users = require("./routes/user.js");
 const posts = require("./routes/post.js");
 // const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const flash = require("connect-flash");
+const path = require("path");
+
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"views"));
 
 const sessionOptions = {
     secret : "mysupersecreatestring",
@@ -11,16 +16,28 @@ const sessionOptions = {
     saveUninitialized: true,
 }
 app.use( session(sessionOptions) );
+app.use(flash());
+app.use((req,res,next)=> {
+    res.locals.messages = req.flash("success");
+    res.locals.error = req.flash("error");
+    next()
+});
 
 app.get("/register",(req,res)=>{
     let { name="anonymous" } = req.query;
     req.session.name = name;
+    if(name === "anonymous"){
+        req.flash("error","user not found!");
+    }else{
+        req.flash("success","user register successfully");
+    }
     // res.send(name);
-    res.redirect("/hello")
+    res.redirect("/hello");
 });
 
 app.get("/hello", (req,res)=>{
-    res.send(`hello ,${req.session.name}`)
+    res.render("page.ejs", {name: req.session.name});
+    
 })
 
 
