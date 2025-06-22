@@ -1,84 +1,87 @@
 <% layout("/layouts/boilerplate") %>
-<%= success %>
-   <style>
-     #filters {
-      display: flex;
-      flex-wrap: wrap;
-      
-     }
-     .filter{
-      text-align: center;
-      margin-right: 2rem;
-      margin-top: 2rem;
-      opacity: 0.7;
-      font-size: 0.9rem;
-     }
 
-     .filter:hover {
-      opacity: 1;
-      cursor: pointer;
-     }
+  <!-- Filters -->
+  <div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p><span class="translatable" data-en="Trending" data-ja="トレンド">Trending</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p><span class="translatable" data-en="Rooms" data-ja="部屋">Rooms</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p><span class="translatable" data-en="Iconic Cities" data-ja="象徴的な都市">Iconic Cities</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p><span class="translatable" data-en="Mountains" data-ja="山々">Mountains</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-brands fa-fort-awesome"></i></div>
+      <p><span class="translatable" data-en="Castles" data-ja="お城">Castles</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p><span class="translatable" data-en="Amazing pools" data-ja="素晴らしいプール">Amazing pools</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <p><span class="translatable" data-en="Camping" data-ja="キャンプ">Camping</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-wheat-awn"></i></div>
+      <p><span class="translatable" data-en="Farms" data-ja="農場">Farms</span></p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-snowman"></i></div>
+      <p><span class="translatable" data-en="Arctic" data-ja="北極">Arctic</span></p>
+    </div>
 
-   </style>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+        <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+      </div>
+    </div>
+  </div>
 
-
-   <div id="filters">
-      <div class="filter">
-         <div><i class="fa-solid fa-fire"></i></div>
-         <p>Trending </p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-bed"></i></div>
-         <p>Rooms</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-mountain-city"></i></div>
-         <p>Iconic Cities</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-mountain"></i></div>
-         <p>Mountains</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-brands fa-fort-awesome"></i></div>
-         <p>Castles</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-person-swimming"></i></div>
-         <p>Amazing pools</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-campground"></i></div>
-         <p>Camping</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-wheat-awn"></i></div>
-         <p>Farms</p>
-      </div>
-      <div class="filter">
-         <div><i class="fa-solid fa-snowman"></i></div>
-         <p>Arctic</p>
-      </div>
-   </div>
-   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <!-- Listings -->
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4">
     <% for(let listing of allListings) { %>
-        <a href="/listings/<%= listing._id %>" class="listing-link">
-        <div class="card col listing-card">
+      <div class="col d-flex align-items-stretch">
+        <a href="/listings/<%= listing._id %>" class="listing-link w-100">
+          <div class="card listing-card position-relative h-100">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
+            <div class="listing-overlay">
+              <h5 class="mb-1"><%= listing.title %></h5>
+              <div>&#8377;<%= listing.price.toLocaleString("en-IN")%> /night  <span><i class="tax-info">&nbsp;&nbsp;+18% GST</i></span></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
 
-         <img src="<%= listing.image.url  %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
-         <div class="card-img-overlay"></div>
+  
+  <!-- tax toggling button  -->
+  <script>
+    let taxToggle = document.getElementById("switchCheckDefault");
+    taxToggle.addEventListener("click", () => {
+      let taxInfo = document.getElementsByClassName("tax-info");
+      for(info of taxInfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        
+        } else {
+          info.style.display = "none";
+        }
+      }
+      
+    })
+  </script>
 
-         <div class="card-body">
-           <p class="card-text">
-              <b><%= listing.title %> </b><br>
-             &#8377;<%= listing.price.toLocaleString("en-IN")%> /night<br>
-         </p>
-
-         </div>
-       </div>
-    </a>
-       <% } %>
-   </div> 
 
 
 
