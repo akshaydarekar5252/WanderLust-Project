@@ -10,9 +10,8 @@ const { storage } = require('../cloudConfig.js'); // Import the cloudinary stora
 const upload = multer({ storage })// Set the destination for uploaded files
 
 
-router.route("/")
-.get(wrapAsync(listingControllers.index))
-.post(
+router.get("/", wrapAsync(listingControllers.index));
+router.post(
     isLoggedIn,
     upload.single('listings[image]'),
      validateListing,
